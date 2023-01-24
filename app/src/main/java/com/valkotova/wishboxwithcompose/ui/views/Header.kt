@@ -48,7 +48,7 @@ fun Header(
                     tint = MaterialTheme.colorScheme.onSurface
                 )
         Text(
-            text = "title",
+            text = title,
             style = MaterialTheme.typography.labelLarge,
             color = ColorTextCaption,
             modifier = Modifier.weight(1f)
