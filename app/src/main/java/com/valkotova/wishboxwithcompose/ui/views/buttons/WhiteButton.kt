@@ -2,6 +2,7 @@ package com.valkotova.wishboxwithcompose.ui.views.buttons
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -12,8 +13,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.valkotova.wishboxwithcompose.R
-import com.valkotova.wishboxwithcompose.ui.theme.ColorTextGeneral
-import com.valkotova.wishboxwithcompose.ui.theme.ColorTextGray
+import com.valkotova.wishboxwithcompose.ui.main.theme.ColorTextGeneral
+import com.valkotova.wishboxwithcompose.ui.main.theme.ColorTextGray
 
 @Preview
 @Composable
@@ -35,7 +36,8 @@ fun WhiteButton(
     ){
         Text(
             text = text,
-            style = MaterialTheme.typography.bodyLarge
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.padding(horizontal = 22.dp, vertical = 5.dp)
         )
     }
 }

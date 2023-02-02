@@ -3,7 +3,9 @@ package com.valkotova.wishboxwithcompose.di
 import android.content.Context
 import android.util.Log
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.valkotova.wishboxwithcompose.BuildConfig
+import com.valkotova.wishboxwithcompose.data.network.AuthAPI
 import com.valkotova.wishboxwithcompose.domain.useCases.prefs.GetTokenUseCase
 import dagger.Module
 import dagger.Provides
@@ -13,9 +15,11 @@ import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
@@ -53,6 +57,19 @@ object NetworkModule {
             }
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideRetrofit(json: Json, okHttpClient: OkHttpClient): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(BuildConfig.SERVER_URL)
+            .client(okHttpClient)
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .build()
+
+    @Provides
+    @Singleton
+    fun provideAuthApi(retrofit : Retrofit) = retrofit.create(AuthAPI::class.java)
 
     private fun setUserAgent(original: Request, token: String): Request {
         return MyRequester(original)

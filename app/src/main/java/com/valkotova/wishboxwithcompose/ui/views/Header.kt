@@ -19,8 +19,8 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.valkotova.wishboxwithcompose.R
-import com.valkotova.wishboxwithcompose.ui.theme.ColorTextCaption
-import com.valkotova.wishboxwithcompose.ui.theme.ColorTextGeneral
+import com.valkotova.wishboxwithcompose.ui.main.theme.ColorTextCaption
+import com.valkotova.wishboxwithcompose.ui.main.theme.ColorTextGeneral
 
 @Preview
 @Composable
@@ -49,9 +49,10 @@ fun Header(
                 )
         Text(
             text = title,
-            style = MaterialTheme.typography.labelLarge,
+            style = MaterialTheme.typography.titleLarge,
             color = ColorTextCaption,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .padding(horizontal = 30.dp)
         )
         firstButton?.invoke()
         secondButton?.invoke()

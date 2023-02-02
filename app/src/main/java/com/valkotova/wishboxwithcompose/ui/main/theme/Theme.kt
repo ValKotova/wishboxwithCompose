@@ -1,4 +1,4 @@
-package com.valkotova.wishboxwithcompose.ui.theme
+package com.valkotova.wishboxwithcompose.ui.main.theme
 
 import android.app.Activity
 import android.os.Build
@@ -23,7 +23,10 @@ private val DarkColorScheme = darkColorScheme(
     primary = Color(0xFF525298),
     background = Color(0xFFFFFFFF),
     onSurface = Color(0xFF414141),
-    inversePrimary = Color(0xFFECECF6)
+    inversePrimary = Color(0xFFECECF6),
+    errorContainer = Color(0xFFFF7B7A),
+    onErrorContainer = Color(0xFFFFFFFF),
+    secondary = Color.Black
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -31,7 +34,10 @@ private val LightColorScheme = lightColorScheme(
     primary = Color(0xFF525298),
     background = Color(0xFFFFFFFF),
     onSurface = Color(0xFF414141),
-    inversePrimary = Color(0xFFECECF6)
+    inversePrimary = Color(0xFFECECF6),
+    errorContainer = Color(0xFFFF7B7A),
+    onErrorContainer = Color(0xFFFFFFFF),
+    secondary = Color.Black
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
     surface = Color(0xFFFFFBFE),
