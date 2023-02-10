@@ -14,7 +14,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 @Stable
 class AppState(
     val scaffoldState: ScaffoldState,
-    val navController: NavHostController
+    val navController: NavHostController,
+    val mainViewModel : MainActivityViewModel
 ) {
 
     val bottomBarTabs = HomeSections.values()
@@ -42,9 +43,6 @@ class AppState(
             }
         }
     }
-
-    var showError : (String) -> Unit = {}
-    val hideError : () -> Unit = {}
 }
 
 private fun NavBackStackEntry.lifecycleIsResumed() =

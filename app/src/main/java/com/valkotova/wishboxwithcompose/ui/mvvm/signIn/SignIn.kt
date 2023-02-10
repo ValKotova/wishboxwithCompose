@@ -15,10 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.valkotova.wishboxwithcompose.R
-import com.valkotova.wishboxwithcompose.ui.main.AppState
-import com.valkotova.wishboxwithcompose.ui.main.CommonUIEvents
-import com.valkotova.wishboxwithcompose.ui.main.HomeSections
-import com.valkotova.wishboxwithcompose.ui.main.UIEvents
+import com.valkotova.wishboxwithcompose.ui.main.*
 import com.valkotova.wishboxwithcompose.ui.views.Header
 import com.valkotova.wishboxwithcompose.ui.views.WhiteEditText
 import com.valkotova.wishboxwithcompose.ui.views.buttons.BlueButton
@@ -38,10 +35,15 @@ fun SignIn (
                 result.append('\n')
             }
             result.delete(result.lastIndex, result.lastIndex)
-            appState.showError(result.toString())
+            appState.mainViewModel.showError(result.toString())
         }
         is CommonUIEvents.UIErrorNetwork -> {
-            appState.showError((state.value as CommonUIEvents.UIErrorNetwork).error)
+            appState.mainViewModel.showError((state.value as CommonUIEvents.UIErrorNetwork).error)
+        }
+        is CommonUIEvents.NavigateTo -> {
+            (state.value as? CommonUIEvents.NavigateTo)?.route?.let{
+                appState.navigateToBottomBarRoute(it)
+            }
         }
     }
 

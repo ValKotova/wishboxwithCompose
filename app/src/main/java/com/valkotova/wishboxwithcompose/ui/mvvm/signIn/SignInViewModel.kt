@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.valkotova.wishboxwithcompose.R
 import com.valkotova.wishboxwithcompose.domain.useCases.auth.LoginUseCase
 import com.valkotova.wishboxwithcompose.ui.main.CommonUIEvents
+import com.valkotova.wishboxwithcompose.ui.main.MainDestinations
 import com.valkotova.wishboxwithcompose.ui.main.UIEvents
 import com.valkotova.wishboxwithcompose.ui.views.EditTextState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -62,13 +63,15 @@ class SignInViewModel @Inject constructor(
 
     private suspend fun login(email : String, password: String) {
         try {
-            loginUseCase.execute(email, password)
+            val info = loginUseCase.execute(email, password)
+            if(info.confirmed)
+                _state.emit(CommonUIEvents.NavigateTo(MainDestinations.LISTS))
         } catch (t : Throwable){
             _state.emit(CommonUIEvents.UIErrorNetwork(t.message?:""))
         }
     }
 
-    fun checkEmail(email : String) : Int? {
+    private fun checkEmail(email : String) : Int? {
         if (!email.contains("@")) {
             return R.string.error_email_dog
         }
@@ -81,7 +84,7 @@ class SignInViewModel @Inject constructor(
         return null
     }
 
-    fun checkPassword(password : String) : Int?{
+    private fun checkPassword(password : String) : Int?{
         if(password.contains(" ")){
             return R.string.error_credentials_password_is_not_valid
         }

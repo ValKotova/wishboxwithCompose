@@ -5,6 +5,7 @@ import android.util.Config.PROFILE
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
@@ -27,6 +28,7 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.valkotova.wishboxwithcompose.ui.mvvm.signIn.SignIn
 import com.valkotova.wishboxwithcompose.ui.main.theme.WishboxWithComposeTheme
+import com.valkotova.wishboxwithcompose.ui.mvvm.MainLists.MainLists
 import com.valkotova.wishboxwithcompose.ui.views.BottomBar
 import com.valkotova.wishboxwithcompose.ui.views.ErrorBox
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,16 +36,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @OptIn(ExperimentalMaterial3Api::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val viewModel : MainActivityViewModel by viewModels()
             WishboxWithComposeTheme {
-                val appState = rememberAppState()
+                val viewModel : MainActivityViewModel by viewModels()
+                val appState = rememberAppState(viewModel)
                 val errorState = viewModel.errorState.collectAsState()
-                appState.showError = {
-                    viewModel.showError(it)
-                }
                 Scaffold(
                     bottomBar = {
                         if (appState.shouldShowBottomBar) {
@@ -61,20 +61,19 @@ class MainActivity : ComponentActivity() {
                         startDestination = MainDestinations.SIGN_IN,
                         modifier = Modifier.padding(it)
                     ) {
-                        //navGraph()
                         composable(MainDestinations.SIGN_IN) {
                             SignIn(appState)
                         }
-                        composable(HomeSections.LISTS.route) {
+                        composable(MainDestinations.LISTS) {
+                            MainLists(appState)
+                        }
+                        composable(MainDestinations.CALENDAR) {
                             SignIn(appState)
                         }
-                        composable(HomeSections.CALENDAR.route) {
+                        composable(MainDestinations.FRIENDS) {
                             SignIn(appState)
                         }
-                        composable(HomeSections.FRIENDS.route) {
-                            SignIn(appState)
-                        }
-                        composable(HomeSections.MENU.route) {
+                        composable(MainDestinations.MENU) {
                             SignIn(appState)
                         }
                     }
@@ -87,11 +86,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun rememberAppState(
+    mainActivityViewModel: MainActivityViewModel,
     scaffoldState: ScaffoldState = rememberScaffoldState(),
     navController: NavHostController = rememberNavController()
 ) =
     remember(scaffoldState, navController) {
-        AppState(scaffoldState, navController)
+        AppState(scaffoldState, navController, mainActivityViewModel)
     }
 
 //fun NavGraphBuilder.navGraph() {

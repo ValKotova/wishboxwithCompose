@@ -1,4 +1,4 @@
-package com.valkotova.wishboxwithcompose.data.model
+package com.valkotova.wishboxwithcompose.data.model.requests
 
 import kotlinx.serialization.Serializable
 

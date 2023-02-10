@@ -1,8 +1,8 @@
 package com.valkotova.wishboxwithcompose.data.network
 
-import com.valkotova.wishboxwithcompose.data.model.ChangePasswordRequest
-import com.valkotova.wishboxwithcompose.data.model.CredentialRequest
-import com.valkotova.wishboxwithcompose.data.model.TokenResponse
+import com.valkotova.wishboxwithcompose.data.model.requests.ChangePasswordRequest
+import com.valkotova.wishboxwithcompose.data.model.requests.CredentialRequest
+import com.valkotova.wishboxwithcompose.data.model.responses.TokenResponse
 import retrofit2.Response
 import retrofit2.http.*
 

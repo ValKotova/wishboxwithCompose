@@ -26,7 +26,8 @@ private val DarkColorScheme = darkColorScheme(
     inversePrimary = Color(0xFFECECF6),
     errorContainer = Color(0xFFFF7B7A),
     onErrorContainer = Color(0xFFFFFFFF),
-    secondary = Color.Black
+    secondary = Color.Black,
+    onTertiary = Color(0xFFF3F3F8)
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -37,7 +38,8 @@ private val LightColorScheme = lightColorScheme(
     inversePrimary = Color(0xFFECECF6),
     errorContainer = Color(0xFFFF7B7A),
     onErrorContainer = Color(0xFFFFFFFF),
-    secondary = Color.Black
+    secondary = Color.Black,
+    onTertiary = Color(0xFFF3F3F8)
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
     surface = Color(0xFFFFFBFE),
@@ -53,7 +55,7 @@ private val LightColorScheme = lightColorScheme(
 fun WishboxWithComposeTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {

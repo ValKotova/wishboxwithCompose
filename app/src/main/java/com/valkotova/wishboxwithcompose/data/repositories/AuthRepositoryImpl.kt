@@ -1,14 +1,11 @@
 package com.valkotova.wishboxwithcompose.data.repositories
 
-import com.valkotova.wishboxwithcompose.data.model.ChangePasswordRequest
-import com.valkotova.wishboxwithcompose.data.model.CredentialRequest
+import com.valkotova.wishboxwithcompose.data.model.requests.ChangePasswordRequest
+import com.valkotova.wishboxwithcompose.data.model.requests.CredentialRequest
 import com.valkotova.wishboxwithcompose.data.network.AuthAPI
 import com.valkotova.wishboxwithcompose.data.utils.BaseBackendApi
 import com.valkotova.wishboxwithcompose.domain.Repositories.AuthRepository
 import com.valkotova.wishboxwithcompose.domain.model.Token
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.map
 import kotlinx.serialization.json.Json
 import javax.inject.Inject
 

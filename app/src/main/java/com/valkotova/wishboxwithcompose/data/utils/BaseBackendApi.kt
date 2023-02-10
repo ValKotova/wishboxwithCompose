@@ -1,16 +1,11 @@
 package com.valkotova.wishboxwithcompose.data.utils
 
-import com.valkotova.wishboxwithcompose.data.model.ErrorResponse
+import com.valkotova.wishboxwithcompose.data.model.responses.ErrorResponse
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.asFlow
-import kotlinx.coroutines.flow.conflate
-import kotlinx.coroutines.flow.flow
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import retrofit2.HttpException
 import retrofit2.Response
-import javax.inject.Inject
 
 abstract class BaseBackendApi (private val json: Json) {
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -64,7 +59,7 @@ abstract class BaseBackendApi (private val json: Json) {
                 ?.let { json.decodeFromString<ErrorResponse>(it) }
                 ?.message
         }catch (e: Exception){
-            "serv"
+            e.message
         }
     }
 }

@@ -18,8 +18,8 @@ enum class HomeSections(
     val icon: Int,
     val route: String
 ) {
-    LISTS(R.drawable.ic_bottom_bar_1, "${MainDestinations.HOME}/lists"),
-    CALENDAR(R.drawable.ic_bottom_bar_2, "${MainDestinations.HOME}/calendar"),
-    FRIENDS(R.drawable.ic_bottom_bar_3, "${MainDestinations.HOME}/friends"),
-    MENU(R.drawable.ic_bottom_bar_4, "${MainDestinations.HOME}/menu")
+    LISTS(R.drawable.ic_bottom_bar_1, MainDestinations.LISTS),
+    CALENDAR(R.drawable.ic_bottom_bar_2, MainDestinations.CALENDAR),
+    FRIENDS(R.drawable.ic_bottom_bar_3, MainDestinations.FRIENDS),
+    MENU(R.drawable.ic_bottom_bar_4, MainDestinations.MENU)
 }
