@@ -2,6 +2,7 @@ package com.valkotova.wishboxwithcompose.ui.main.theme
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -38,5 +39,12 @@ val Typography = Typography(
        fontSize = 14.sp,
        lineHeight = 22.sp,
        letterSpacing = 0.sp
-   )
+   ),
+    bodySmall = TextStyle(
+        fontFamily = FontFamily(Font(R.font.roboto_medium)),
+        fontWeight = FontWeight.Normal,
+        fontSize = 13.sp,
+        lineHeight = 15.sp,
+        letterSpacing = 0.sp
+    )
 )

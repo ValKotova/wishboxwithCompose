@@ -32,7 +32,7 @@ fun WishInfoData.to_WishInfo() = WishInfo(
     link = this.link,
     list = this.list,
     status = this.status,
-    price = String.format("%.2f", this.price),
+    price = this.price?.let{ String.format("%.2f", this.price)} ?: run {""},
     user = this.user
 
 )

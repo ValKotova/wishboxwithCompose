@@ -1,4 +1,4 @@
-package com.valkotova.wishboxwithcompose.ui.mvvm.signIn
+package com.valkotova.wishboxwithcompose.ui.fragments.signIn
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.*
@@ -6,16 +6,18 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.valkotova.wishboxwithcompose.R
 import com.valkotova.wishboxwithcompose.ui.main.*
+import com.valkotova.wishboxwithcompose.ui.main.theme.ColorTextCaption
+import com.valkotova.wishboxwithcompose.ui.main.theme.ColorTextGeneral
 import com.valkotova.wishboxwithcompose.ui.views.Header
 import com.valkotova.wishboxwithcompose.ui.views.WhiteEditText
 import com.valkotova.wishboxwithcompose.ui.views.buttons.BlueButton
@@ -27,24 +29,8 @@ fun SignIn (
     viewModel : SignInViewModel = hiltViewModel()){
     val scrollState = rememberScrollState()
     val state = viewModel.state.collectAsState()
-    when(state.value){
-        is CommonUIEvents.UIError -> {
-            val result = java.lang.StringBuilder()
-            for(@StringRes id in (state.value as CommonUIEvents.UIError).errors){
-                result.append(stringResource(id))
-                result.append('\n')
-            }
-            result.delete(result.lastIndex, result.lastIndex)
-            appState.mainViewModel.showError(result.toString())
-        }
-        is CommonUIEvents.UIErrorNetwork -> {
-            appState.mainViewModel.showError((state.value as CommonUIEvents.UIErrorNetwork).error)
-        }
-        is CommonUIEvents.NavigateTo -> {
-            (state.value as? CommonUIEvents.NavigateTo)?.route?.let{
-                appState.navigateToBottomBarRoute(it)
-            }
-        }
+    StatesManagement(appState = appState, state = state){
+
     }
 
     Column(
@@ -94,12 +80,15 @@ fun SignIn (
             }
         )
         Text(
-            text = stringResource(id = R.string.forgot_pass),
+            text = stringResource(id = R.string.to_sign_up),
             modifier = Modifier
                 .clickable {
-
+                    viewModel.navigateSignUp()
                 }
-                .padding(horizontal = 30.dp, vertical = 30.dp)
+                .padding(horizontal = 30.dp, vertical = 30.dp),
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.primary,
+            textDecoration = TextDecoration.Underline
         )
     }
 }

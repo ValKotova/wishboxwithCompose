@@ -5,10 +5,7 @@ import android.util.Log
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.valkotova.wishboxwithcompose.BuildConfig
-import com.valkotova.wishboxwithcompose.data.network.AuthAPI
-import com.valkotova.wishboxwithcompose.data.network.UploadAPI
-import com.valkotova.wishboxwithcompose.data.network.UserAPI
-import com.valkotova.wishboxwithcompose.data.network.WishAPI
+import com.valkotova.wishboxwithcompose.data.network.*
 import com.valkotova.wishboxwithcompose.domain.useCases.prefs.GetTokenUseCase
 import dagger.Module
 import dagger.Provides
@@ -85,6 +82,11 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideUploadApi(retrofit : Retrofit) = retrofit.create(UploadAPI::class.java)
+
+    @Provides
+    @Singleton
+    fun provideWishListApi(retrofit : Retrofit) = retrofit.create(WishlistAPI::class.java)
+
 
     private fun setUserAgent(original: Request, token: String): Request {
         return MyRequester(original)

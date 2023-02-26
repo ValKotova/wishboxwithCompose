@@ -1,8 +1,6 @@
-package com.valkotova.wishboxwithcompose.ui.mvvm.signIn
+package com.valkotova.wishboxwithcompose.ui.fragments.signIn
 
-import android.util.Log
 import android.util.Patterns
-import androidx.compose.runtime.sourceInformation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.valkotova.wishboxwithcompose.R
@@ -32,6 +30,7 @@ class SignInViewModel @Inject constructor(
     val state : StateFlow<UIEvents>
         get() = _state.asStateFlow()
 
+    //events
     fun emailChanged(newText : String) = viewModelScope.launch {
         _email.emit(EditTextState(newText, false))
     }
@@ -42,6 +41,10 @@ class SignInViewModel @Inject constructor(
 
     fun SignInOnClick(){
         checkCredential()
+    }
+
+    fun navigateSignUp() = viewModelScope.launch {
+        _state.emit(CommonUIEvents.NavigateTo(MainDestinations.SIGN_UP))
     }
 
     private fun checkCredential() = viewModelScope.launch{

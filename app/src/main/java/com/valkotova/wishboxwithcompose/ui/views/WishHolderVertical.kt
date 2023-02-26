@@ -2,6 +2,7 @@ package com.valkotova.wishboxwithcompose.ui.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
@@ -26,12 +27,16 @@ import com.valkotova.wishboxwithcompose.ui.main.theme.ColorTextGeneral
 @Composable
 fun WishHolderVertical(
     wish: WishShortInfo,
+    onClick : (Int) -> Unit
 ) {
     val context = LocalContext.current
     Box(
         modifier = Modifier
             //.background(color = MaterialTheme.colorScheme.background)
             .clip(RoundedCornerShape(12.dp))
+            .clickable {
+                onClick.invoke(wish.id)
+            }
     ) {
 
         Column(
@@ -69,18 +74,24 @@ fun WishHolderVertical(
                     )
                 }
                 Row() {
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_lock_circled),
-                        contentDescription = "Blocked"
-                    )
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_booked_circled),
-                        contentDescription = "Booked"
-                    )
-                    Image(
-                        painter = painterResource(id = R.drawable.ic_star_circled),
-                        contentDescription = "Star"
-                    )
+                    if(wish.isBlocked)
+                        Image(
+                            modifier = Modifier.padding(2.dp),
+                            painter = painterResource(id = R.drawable.ic_lock_circled),
+                            contentDescription = "Blocked"
+                        )
+                    if(wish.isBooked)
+                        Image(
+                            modifier = Modifier.padding(2.dp),
+                            painter = painterResource(id = R.drawable.ic_booked_circled),
+                            contentDescription = "Booked"
+                        )
+                    if(wish.favorite)
+                        Image(
+                            modifier = Modifier.padding(2.dp),
+                            painter = painterResource(id = R.drawable.ic_star_circled),
+                            contentDescription = "Star"
+                        )
                 }
             }
             Box(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)) {

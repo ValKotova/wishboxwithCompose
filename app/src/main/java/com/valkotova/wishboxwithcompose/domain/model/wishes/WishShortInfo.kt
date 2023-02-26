@@ -17,7 +17,7 @@ data class WishShortInfo(
     val isBooked : Boolean = false
 )
 
-fun WishShortInfoData.to_WishShortInfo(id : Int, isMine : Boolean) = WishShortInfo(
+fun WishShortInfoData.to_WishShortInfo(currentUserId : Int, isMine : Boolean) = WishShortInfo(
     id = this.id,
     name = this.name,
     preview = this.preview?.to_FileInfo(),

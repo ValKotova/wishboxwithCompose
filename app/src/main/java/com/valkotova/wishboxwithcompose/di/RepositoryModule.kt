@@ -1,13 +1,7 @@
 package com.valkotova.wishboxwithcompose.di
 
-import com.valkotova.wishboxwithcompose.data.repositories.AuthRepositoryImpl
-import com.valkotova.wishboxwithcompose.data.repositories.PrefsRepositoryImpl
-import com.valkotova.wishboxwithcompose.data.repositories.UserRepositoryImpl
-import com.valkotova.wishboxwithcompose.data.repositories.WishRepositoryImpl
-import com.valkotova.wishboxwithcompose.domain.Repositories.AuthRepository
-import com.valkotova.wishboxwithcompose.domain.Repositories.PrefsRepository
-import com.valkotova.wishboxwithcompose.domain.Repositories.UserRepository
-import com.valkotova.wishboxwithcompose.domain.Repositories.WishRepository
+import com.valkotova.wishboxwithcompose.data.repositories.*
+import com.valkotova.wishboxwithcompose.domain.Repositories.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -28,4 +22,8 @@ interface RepositoryModule {
     @Singleton
     @Binds
     fun bindsWishRepo(repo: WishRepositoryImpl): WishRepository
+
+    @Singleton
+    @Binds
+    fun bindsWishListRepo(repo: WishListRepositoryImpl): WishListRepository
 }

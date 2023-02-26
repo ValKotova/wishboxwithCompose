@@ -32,13 +32,22 @@ class AppState(
         navController.navigateUp()
     }
 
-    fun navigateToBottomBarRoute(route: String) {
+    fun navigate(route : String){
         if (route != currentRoute) {
-            navController.navigate(route) {
-                launchSingleTop = true
-                restoreState = true
-                popUpTo(findStartDestination(navController.graph).id) {
-                    saveState = true
+            if (route in bottomBarRoutes)
+                navController.navigate(route) {
+                    launchSingleTop = true
+                    restoreState = true
+                    popUpTo(findStartDestination(navController.graph).id) {
+                        saveState = true
+                    }
+                    anim {
+                        this.enter
+                    }
+                }
+            else {
+                navController.navigate(route) {
+                    restoreState = true
                 }
             }
         }
