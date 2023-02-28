@@ -22,6 +22,5 @@ class RegistrationUseCase @Inject constructor(
             prefsRepository.setMyId(it)
         }
         return result
-
     }
 }

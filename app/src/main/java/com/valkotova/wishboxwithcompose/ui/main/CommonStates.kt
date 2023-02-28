@@ -9,7 +9,7 @@ import androidx.compose.ui.res.stringResource
 fun StatesManagement(
     appState : AppState,
     state : State<UIEvents>,
-    customStatesCheck : (state : State<UIEvents>) -> Unit){
+    customStatesCheck : @Composable (state : State<UIEvents>) -> Unit){
     when(state.value){
         is CommonUIEvents.UIError -> {
             val result = java.lang.StringBuilder()

@@ -1,6 +1,6 @@
 package com.valkotova.wishboxwithcompose.ui.main
 
-object MainDestinations {
+object Destinations {
     const val HOME = "home"
     const val LISTS = "$HOME/lists"
     const val CALENDAR = "$HOME/calendar"
@@ -11,4 +11,6 @@ object MainDestinations {
     const val BROWSE_WISHLIST = "BrowseWishList"
     const val BROWSE_WISH = "BrowseWish/"
     const val BROWSE_PROFILE = "BrowseProfile"
+    const val CREATE_PROFILE = "CreateProfile"
+    const val CROP_IMAGE = "CropImage/"
 }

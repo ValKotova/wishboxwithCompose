@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.valkotova.wishboxwithcompose.R
 import com.valkotova.wishboxwithcompose.domain.useCases.auth.RegistrationUseCase
 import com.valkotova.wishboxwithcompose.ui.main.CommonUIEvents
-import com.valkotova.wishboxwithcompose.ui.main.MainDestinations
+import com.valkotova.wishboxwithcompose.ui.main.Destinations
 import com.valkotova.wishboxwithcompose.ui.main.UIEvents
 import com.valkotova.wishboxwithcompose.ui.views.EditTextState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -50,16 +50,17 @@ class SignUpViewModel @Inject constructor(
         checkCredential()
     }
     fun navigateSignUp() = viewModelScope.launch {
-        _state.emit(CommonUIEvents.NavigateTo(MainDestinations.SIGN_IN))
+        _state.emit(CommonUIEvents.NavigateTo(Destinations.SIGN_IN))
     }
 
     private suspend fun login(email : String, password: String) {
         try {
             val info = registrationUseCase.execute(email, password)
-            if(info.id == null)
-                _state.emit(CommonUIEvents.NavigateTo(MainDestinations.LISTS))
-            if(info.confirmed)
-                _state.emit(CommonUIEvents.NavigateTo(MainDestinations.LISTS))
+            if(info.nickname.isNullOrEmpty())
+                _state.emit(CommonUIEvents.NavigateTo(Destinations.CREATE_PROFILE))
+            else
+            //if(info.confirmed)
+                _state.emit(CommonUIEvents.NavigateTo(Destinations.LISTS))
         } catch (t : Throwable){
             _state.emit(CommonUIEvents.UIErrorNetwork(t.message?:""))
         }

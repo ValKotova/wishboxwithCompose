@@ -16,20 +16,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.valkotova.wishboxwithcompose.R
 import com.valkotova.wishboxwithcompose.domain.model.wishes.WishShortInfo
 import com.valkotova.wishboxwithcompose.ui.main.AppState
 import com.valkotova.wishboxwithcompose.ui.main.CommonUIEvents
-import com.valkotova.wishboxwithcompose.ui.main.MainDestinations
+import com.valkotova.wishboxwithcompose.ui.main.Destinations
 import com.valkotova.wishboxwithcompose.ui.main.getSmallUri
 import com.valkotova.wishboxwithcompose.ui.main.theme.ColorTextCaption
 import com.valkotova.wishboxwithcompose.ui.views.Header
 import com.valkotova.wishboxwithcompose.ui.views.WishHolderVertical
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
@@ -100,7 +97,7 @@ fun WishesList(
     ){
         items(wishesData.value.size){ index ->
             WishHolderVertical(wishesData.value[index]) {
-                appState.navigate("${MainDestinations.BROWSE_WISH}$it")
+                appState.navigate("${Destinations.BROWSE_WISH}$it")
             }
         }
     }

@@ -25,7 +25,6 @@ import kotlin.time.TimeSource
 @Composable
 fun WhiteEditText(
     modifier : Modifier = Modifier,
-    label : String = "Label",
     hint : String = "hint",
     singleLine : Boolean = true,
     state : State<EditTextState>,
