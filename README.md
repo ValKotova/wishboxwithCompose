@@ -1,2 +1,2 @@
-# wishboxwithCompose
-Remake wishbox with compose unfinished
+# Wishbox With Compose
+Remake of wishbox using compose unfinished
